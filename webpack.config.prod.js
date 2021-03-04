@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/index.js",
   devtool: 'inline-source-map',
   devServer: {
@@ -28,7 +28,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              publicPath: '../',
+            },
+          },
+          'css-loader',
+        ],
+        // use: ["style-loader", "css-loader"],
       },
     ],
   },
