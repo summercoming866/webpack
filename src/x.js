@@ -1,3 +1,3 @@
-import css from './x.css'
+import css from './x.less'
 console.log(css)
 export default 'xxx'
